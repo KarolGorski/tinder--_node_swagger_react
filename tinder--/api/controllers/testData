@@ -1,0 +1,57 @@
+var imgTestData = new model.Image({
+    id: "0123456789abcd",
+    title: "Testowy obrazek",
+    description: "Opis do obrazka",
+    date: "2017-11-09T10:20:00.214Z",
+    path: "/library/images/",
+    size: 1024
+});
+
+var imgTestData2 = new model.Image({
+    id: "0123456789zexc",
+    title: "Testowy obrazek2",
+    description: "Opis do obrazka2",
+    date: "2017-11-09T10:20:00.214Z",
+    path: "/library/images/",
+    size: 1024
+});
+
+var imgTestData3 = new model.Image({
+    id: "0123456789polo",
+    title: "Testowy obrazek3",
+    description: "Opis do obrazka3",
+    date: "2017-11-09T10:20:00.214Z",
+    path: "/library/images/",
+    size: 1024
+});
+
+
+var profileTestData = new model.Image({
+    id: "123",
+    image_id: "0123456789abcd",
+    name: "karol",
+    last_name: "Testowy",
+    description: 'Hej Mała! Byłaś na Kubie? Karol jestem ;*',
+    age: 23,
+    liked_people: ["1234"]
+});
+
+var profileTestData2 = new model.Image({
+    id: "1234",
+    image_id: "0123456789zexc",
+    name: "ladna",
+    last_name: "Pani",
+    description: 'Czytam książki!!!11111',
+    age: 21,
+    liked_people: ["123"]
+});
+
+var profileTestData3 = new model.Image({
+    id: "123456",
+    image_id: "0123456789polo",
+    name: "inna",
+    last_name: "Pani",
+    description: 'heja maćku',
+    age: 17,
+    liked_people: ["123"]
+});

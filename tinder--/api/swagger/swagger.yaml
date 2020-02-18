@@ -1,0 +1,146 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Tinder--
+# during dev, should point to your local machine
+host: localhost:10010
+# basePath prefixes all resource paths 
+basePath: /
+# 
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+  - text/html; charset=utf-8
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+  - text/html; charset=utf-8
+paths:
+  /:
+    x-swagger-router-controller: swag_controller
+    get:
+      operationId: homepage
+      produces:
+        - text/html; charset=utf-8
+      responses:
+        200:
+          description: Success
+          schema:
+            type: string
+  /login/{name}/{password}:
+    x-swagger-router-controller: swag_controller
+    post:
+      description: Logs in caller
+      # used as the method name of the controller
+      operationId: login
+      parameters:
+        - in: path 
+          name: name
+          description: The login to login
+          required: true
+          type: string
+        - in: path 
+          name: password
+          description: The password to use to login
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/CommonResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /browse:
+    x-swagger-router-controller: swag_controller
+    get:
+      description: Let user see propositions
+      operationId: browse
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/BrowseResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"         
+  /user/{id}:
+    x-swagger-router-controller: swag_controller
+    get:
+      description: user profile
+      operationId: user
+      parameters:
+        - in: path 
+          name: id
+          description: id of profile
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/UserResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"         
+  /swagger:
+    x-swagger-pipe: swagger_raw
+# complex objects have schema definitions
+definitions:
+  CommonResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+  ErrorResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+  BrowseResponse:
+    required:
+      - Profiles
+    properties:
+      Profiles:
+        type: array
+        items:
+          type: object
+  UserResponse:
+    required:
+      - Profile
+    properties:
+      Profile:
+        type: object
+        properties:
+          id:
+            type: string
+          image_id:
+            type: string
+          name:
+            type: string
+          last_name:
+            type: string
+          description:
+            type: string
+          age:
+            type: number
+          liked_people:
+            type: array
+            items:
+                type: object
