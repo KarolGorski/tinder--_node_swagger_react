@@ -5,9 +5,7 @@ const thinkagain = require('thinkagain')();
 
 module.exports = {
     user: user,
-    browse: browse,
-    login: login,
-    homepage: homepage
+    browse: browse
 };
 
 let r = thinkagain.r;
@@ -27,12 +25,3 @@ function browse(req, res, next) {
         res.json(result);
         }); 
 }
-
-function login(req, res, next) {
-    
-}
-
-function homepage(req, res, next) {
-    res.json();
-}
-

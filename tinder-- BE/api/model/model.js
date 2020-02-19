@@ -23,7 +23,9 @@ var Profile = thinkagain.createModel('Profile', {
         last_name: { type: 'string' },
         description: {type: 'string'},
         age: { type: 'integer' },
-        liked_people: { type: 'array', items: {type: 'object'}}
+        liked_people: { type: 'array', items: {type: 'object'}},
+        liked_by: {type: 'array', items: {type: 'object'}},
+        disliked_people: {type: 'array', items: {type: 'object'}},
     },
     required: [ 'name','last_name','age' ]
 });

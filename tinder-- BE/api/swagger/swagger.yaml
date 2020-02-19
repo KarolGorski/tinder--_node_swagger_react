@@ -20,45 +20,6 @@ produces:
   - application/json
   - text/html; charset=utf-8
 paths:
-  /:
-    x-swagger-router-controller: swag_controller
-    get:
-      operationId: homepage
-      produces:
-        - text/html; charset=utf-8
-      responses:
-        200:
-          description: Success
-          schema:
-            type: string
-  /login/{name}/{password}:
-    x-swagger-router-controller: swag_controller
-    post:
-      description: Logs in caller
-      # used as the method name of the controller
-      operationId: login
-      parameters:
-        - in: path 
-          name: name
-          description: The login to login
-          required: true
-          type: string
-        - in: path 
-          name: password
-          description: The password to use to login
-          required: true
-          type: string
-      responses:
-        "200":
-          description: Success
-          schema:
-            # a pointer to a definition
-            $ref: "#/definitions/CommonResponse"
-        # responses may fall through to errors
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
   /browse:
     x-swagger-router-controller: swag_controller
     get:
@@ -101,12 +62,6 @@ paths:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
 definitions:
-  CommonResponse:
-    required:
-      - message
-    properties:
-      message:
-        type: string
   ErrorResponse:
     required:
       - message
@@ -141,6 +96,14 @@ definitions:
           age:
             type: number
           liked_people:
+            type: array
+            items:
+                type: object
+          liked_by:
+            type: array
+            items:
+                type: object
+          disliked_people:
             type: array
             items:
                 type: object
